@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Moeen Ali</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .thank-you-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(rgba(29, 17, 96, 0.9), rgba(29, 17, 96, 0.9)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            color: white;
+        }
+
+        .thank-you-title {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .thank-you-message {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+            border: 2px solid var(--accent);
+            background: var(--accent);
+            color: var(--dark);
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+
+        .home-btn:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .cricket-animation {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 3rem auto;
+        }
+
+        .batsman {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200"><path fill="%23ffffff" d="M50,0 L60,0 L60,200 L50,200 Z"/><circle cx="55" cy="30" r="20" fill="%23ffffff"/></svg>') no-repeat;
+            background-size: contain;
+            z-index: 2;
+            animation: batSwing 2s 1s forwards;
+            transform-origin: bottom center;
+        }
+
+        .ball {
+            position: absolute;
+            top: 30%;
+            right: 20%;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #daa520 0%, #f8c300 50%, #daa520 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(218, 165, 32, 0.7);
+            z-index: 3;
+            animation: ballHit 2s 1s forwards;
+        }
+
+        @keyframes batSwing {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            50% { transform: translateX(-50%) rotate(60deg); }
+            100% { transform: translateX(-50%) rotate(0deg); }
+        }
+
+        @keyframes ballHit {
+            0% { transform: translate(0, 0); opacity: 1; }
+            50% { transform: translate(-100px, -100px); opacity: 1; }
+            100% { transform: translate(-300px, -200px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <h1 class="thank-you-title">Thank You!</h1>
+        <p class="thank-you-message">Your message has been successfully sent. Moeen will get back to you soon.</p>
+        
+        <div class="cricket-animation">
+            <div class="batsman"></div>
+            <div class="ball"></div>
+        </div>
+        
+        <a href="index.html" class="home-btn">Back to Home</a>
+    </div>
+
+    <script>
+        // Add some confetti effect
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const colors = ['#1D1160', '#C8102E', '#F8C300', '#FFFFFF'];
+                
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = `${Math.random() * 100}vw`;
+                    confetti.style.top = '0';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = `${Math.random() * 10 + 5}px`;
+                    confetti.style.height = `${Math.random() * 10 + 5}px`;
+                    confetti.style.position = 'fixed';
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.opacity = '0.8';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 3000 + 2000,
+                        easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+                    });
+                    
+                    animation.onfinish = () => confetti.remove();
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

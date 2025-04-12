@@ -1,0 +1,146 @@
+/* Cricket Ball Animation */
+.cricket-ball-animation {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, #daa520 0%, #f8c300 50%, #daa520 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(218, 165, 32, 0.7);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    animation: cricketBall 5s infinite;
+}
+
+@keyframes cricketBall {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    20% {
+        transform: translate(200px, 200px) rotate(360deg);
+    }
+    40% {
+        transform: translate(400px, 100px) rotate(720deg);
+    }
+    60% {
+        transform: translate(600px, 300px) rotate(1080deg);
+    }
+    80% {
+        transform: translate(800px, 200px) rotate(1440deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(1000px, 0) rotate(1800deg);
+        opacity: 0;
+    }
+}
+
+/* Bat Swing Animation */
+.bat-swing-animation {
+    position: absolute;
+    right: 15%;
+    bottom: 20%;
+    width: 100px;
+    height: 300px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 100"><path fill="%235D4037" d="M5,0 L15,0 L15,100 L5,100 Z"/></svg>') no-repeat;
+    background-size: contain;
+    z-index: 2;
+    transform-origin: bottom center;
+    animation: batSwing 4s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+@keyframes batSwing {
+    0%, 100% {
+        transform: rotate(-30deg);
+    }
+    50% {
+        transform: rotate(30deg);
+    }
+}
+
+/* Stumps Animation */
+.stumps-animation {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 100px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 100"><rect x="25" y="0" width="10" height="100" fill="%23A1887F"/><rect x="0" y="90" width="60" height="10" fill="%23795548"/></svg>') no-repeat;
+    background-size: contain;
+    z-index: 2;
+    animation: stumpsShake 3s infinite;
+}
+
+@keyframes stumpsShake {
+    0%, 100% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    25% {
+        transform: translateX(-50%) rotate(2deg);
+    }
+    75% {
+        transform: translateX(-50%) rotate(-2deg);
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Ball Trail Animation */
+.ball-trail {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(248, 195, 0, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+}
