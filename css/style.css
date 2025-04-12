@@ -767,22 +767,102 @@ nav a:hover {
 }
 
 .submit-btn {
-    background: var(--primary);
-    color: var(--light);
+    /* Base Styles */
+    background: var(--accent);
+    color: var(--dark);
     border: none;
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
-    transition: var(--transition);
-    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(248, 195, 0, 0.3);
+    
+    /* Glow Effect */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            45deg,
+            rgba(255,255,255,0.3),
+            rgba(255,255,255,0)
+        );
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+    }
+    
+    /* Icon Transition */
+    i {
+        transition: transform 0.3s ease;
+        margin-left: 8px;
+    }
 }
 
+/* Hover Effects */
 .submit-btn:hover {
     background: var(--secondary);
+    color: var(--light);
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(200, 16, 46, 0.2);
+    box-shadow: 0 12px 25px rgba(200, 16, 46, 0.3);
+    
+    &::before {
+        transform: translateX(100%);
+    }
+    
+    i {
+        transform: translateX(4px);
+    }
+}
+
+/* Active/Pressed State */
+.submit-btn:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 6px 12px rgba(200, 16, 46, 0.4);
+}
+
+/* Loading State */
+.submit-btn.loading {
+    pointer-events: none;
+    
+    span {
+        transform: translateX(-8px);
+    }
+    
+    i {
+        transform: scale(0);
+        position: absolute;
+    }
+    
+    &::after {
+        content: '';
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255,255,255,0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
+}
+
+/* Keyframes for spinner */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Focus State */
+.submit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(248, 195, 0, 0.5);
 }
 
 /* Footer */
@@ -1132,4 +1212,6 @@ footer::before {
     padding: 0 5px;
     z-index: 1; /* Bring above input if needed */
 }
-   
+.fa-spinner {
+    margin-right: 8px;
+}
