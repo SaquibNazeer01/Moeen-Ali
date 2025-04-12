@@ -1055,4 +1055,81 @@ footer::before {
     color: var(--accent);
     opacity: 0.5;
 }
+/* send message form */
+.contact-form input,
+.contact-form textarea {
+    all: unset; /* Reset any problematic styles */
+    width: 100%;
+    padding: 12px 0;
+    color: #333;
+    font-size: 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-bottom-color: var(--accent);
+}
+
+/* Make sure labels aren't covering inputs */
+.contact-form .form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.contact-form label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    pointer-events: none; /* Allows clicking through to input */
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus + label,
+.contact-form textarea:focus + label,
+.contact-form input:not(:placeholder-shown) + label,
+.contact-form textarea:not(:placeholder-shown) + label {
+    top: -15px;
+    font-size: 12px;
+    color: var(--accent);
+}
+
+/* Remove any potential overlays */
+.glass-card::before {
+    pointer-events: none; /* Important! */
+}   
+/* Make borders clearly visible */
+.contact-form .form-group input,
+.contact-form .form-group textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    color: #333; /* Dark text for visibility */
+    background: rgba(255, 255, 255, 0.9); /* Solid light background */
+    border: 2px solid #1D1160; /* Your --primary color */
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: adds depth */
+}
+
+/* Focus state - make border more prominent */
+.contact-form .form-group input:focus,
+.contact-form .form-group textarea:focus {
+    border-color: #F8C300; /* Your --accent color */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(248, 195, 0, 0.2); /* Glow effect */
+}
+
+/* Ensure labels don't obscure borders */
+.contact-form .form-group label {
+    top: -10px; /* Position above the input */
+    left: 10px;
+    background: white; /* Match input background */
+    padding: 0 5px;
+    z-index: 1; /* Bring above input if needed */
+}
    
