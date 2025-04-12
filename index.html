@@ -288,7 +288,34 @@
                     </div>
                 </div>
             </div>
-            https://www.webn.in/MoeenAli
+            <div class="contact-form">
+                <div class="contact-info">
+                    <h2>Send a Message</h2>
+                    <form id="contactForm" action="https://formsubmit.co/moeenalibusinesss.com" method="POST">
+                        <!-- FormSubmit hidden fields -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="../thankyou.html">
+                        <input type="hidden" name="_template" value="table">
+                        
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" required>
+                            <label for="subject">Subject</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" required></textarea>
+                            <label for="message">Message</label>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
         </div>
     </section>
 
