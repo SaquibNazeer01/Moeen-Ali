@@ -51,23 +51,62 @@ const animateOnScroll = () => {
     
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
-    
-// Form Submission
+
+// Form Submission Handler
 const contactForm = document.getElementById('contactForm');
-    
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Here you would typically send the form data to a server
-    alert('Thank you for your message! We will get back to you soon.');
-    contactForm.reset();
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        
+        try {
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Submit form data
+            const formData = new FormData(this);
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            // Handle response
+            if (response.ok) {
+                window.location.href = this.querySelector('[name="_next"]').value;
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            submitBtn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Try Again';
+            setTimeout(() => {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }, 2000);
+        }
+    });
+}
+
+// Button click effects
+document.querySelectorAll('.btn, .submit-btn').forEach(btn => {
+    btn.addEventListener('mousedown', function() {
+        this.style.transform = 'scale(0.95)';
+    });
+    btn.addEventListener('mouseup', function() {
+        this.style.transform = 'scale(1)';
+    });
+    btn.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+    });
 });
 
-// Newsletter Form Submission
-const newsletterForm = document.querySelector('.newsletter-form');
-    
-newsletterForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Thank you for subscribing to Moeen Ali\'s newsletter!');
-    newsletterForm.reset();
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+    animateOnScroll();
 });
