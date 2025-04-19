@@ -54,7 +54,13 @@
 
     <!-- YouTube channel-->
     <center><h2> Support us on YouTube</h2></center>
-    <div class="scoreboard-promo">
+    <center><h2>Support us on YouTube</h2></center>
+<div class="scoreboard-promo">
+  <!-- Animated cricket elements -->
+  <div class="cricket-ball"></div>
+  <div class="bat-swing"></div>
+  <div class="pitch-marks"></div>
+  
   <div class="scoreboard-header">
     <span class="team-name">Moeen Ali Foundation</span>
     <span class="score">Let's Make it <span id="sub-count">10K</span></span>
@@ -67,68 +73,186 @@
       </a>
     </div>
   </div>
+  
+  <!-- Animated cheering crowd -->
+  <div class="cheering-crowd"></div>
 </div>
 
 <style>
+/* Base Styles */
 .scoreboard-promo {
+  position: relative;
   background: #1a1a1a;
   color: white;
   border: 4px solid #d50c0c;
   border-radius: 5px;
-  max-width: 350px;
+  max-width: 400px;
   margin: 25px auto;
   font-family: 'Arial', sans-serif;
   box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  overflow: hidden;
 }
 
 .scoreboard-header {
   background: #d50c0c;
-  padding: 10px 15px;
+  padding: 12px 15px;
   display: flex;
   justify-content: space-between;
   font-weight: bold;
   letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
 }
 
 .team-name {
   text-transform: uppercase;
+  font-size: 18px;
 }
 
 .score {
   background: #000;
-  padding: 2px 10px;
+  padding: 4px 12px;
   border-radius: 3px;
+  font-size: 16px;
 }
 
 #sub-count {
   color: #FFD700;
+  font-weight: bold;
+  animation: countPulse 2s infinite;
 }
 
 .match-info {
-  padding: 20px;
+  padding: 25px 20px;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .match-info p {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-size: 18px;
+  animation: textGlow 3s infinite;
 }
 
 .subscribe-now {
   display: inline-block;
   background: #d50c0c;
   color: white;
-  padding: 12px 25px;
+  padding: 12px 30px;
   border-radius: 4px;
   text-decoration: none;
   font-weight: bold;
   text-transform: uppercase;
   transition: all 0.3s;
+  font-size: 16px;
+  letter-spacing: 1px;
+  animation: bounce 2s infinite;
 }
 
 .subscribe-now:hover {
   background: #ff0000;
   transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+/* Cricket Animations */
+.cricket-ball {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 30% 30%, white, #d50c0c 60%);
+  border-radius: 50%;
+  top: 50%;
+  left: -30px;
+  animation: bowlBall 6s infinite;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.bat-swing {
+  position: absolute;
+  width: 6px;
+  height: 70px;
+  background: linear-gradient(to right, #8B4513, #5D2906);
+  bottom: 30px;
+  right: 100px;
+  transform-origin: bottom center;
+  animation: swingBat 6s infinite;
+  z-index: 1;
+}
+
+.bat-swing:after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 6px;
+  background: #5D2906;
+  bottom: 0;
+  left: -10px;
+  border-radius: 3px;
+}
+
+.pitch-marks {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(transparent, rgba(139, 69, 19, 0.2));
+  z-index: 1;
+}
+
+.cheering-crowd {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  background: 
+    repeating-linear-gradient(90deg, 
+      rgba(255,255,255,0.1), 
+      rgba(255,255,255,0.1) 5px, 
+      transparent 5px, 
+      transparent 10px);
+  animation: crowdCheer 0.5s infinite alternate;
+}
+
+/* Animation Keyframes */
+@keyframes bowlBall {
+  0% { transform: translate(0, -50%); }
+  40% { transform: translate(400px, -50%); }
+  45% { transform: translate(400px, -50%) scale(1.2); }
+  50% { transform: translate(400px, 0%) scale(0.8); opacity: 1; }
+  55% { transform: translate(450px, -20%) scale(0.6); opacity: 0; }
+  100% { transform: translate(450px, -20%) scale(0.6); opacity: 0; }
+}
+
+@keyframes swingBat {
+  0%, 40% { transform: rotate(-30deg); }
+  45% { transform: rotate(60deg); }
+  50% { transform: rotate(30deg); }
+  55%, 100% { transform: rotate(-30deg); }
+}
+
+@keyframes countPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+  50% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+@keyframes crowdCheer {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
 }
 </style>
 
